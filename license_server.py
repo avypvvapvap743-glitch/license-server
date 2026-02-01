@@ -49,6 +49,12 @@ class ValidateRequest(BaseModel):
 
 # ===== БАЗА ДАННЫХ =====
 def init_db():
+    # Создаём директорию для базы данных если её нет
+    import os
+    db_dir = os.path.dirname(DATABASE)
+    if db_dir and not os.path.exists(db_dir):
+        os.makedirs(db_dir, exist_ok=True)
+    
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
     c.execute('''
