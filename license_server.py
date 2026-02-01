@@ -27,11 +27,11 @@ app.add_middleware(
 )
 
 # ===== КОНФИГУРАЦИЯ =====
-DATABASE = "licenses.db"
-ADMIN_PASSWORD = "hornyking1488"  # СМЕНИ ЭТО!
+DATABASE = "/data/licenses.db"  # Persistent storage in Railway volume
+ADMIN_PASSWORD = "your_admin_password_here"  # СМЕНИ ЭТО!
 
 # Секретный ключ для PASETO (генерируется один раз)
-SECRET_KEY = Key.new(version=4, purpose="local", key=b"a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6")  # СМЕНИ ЭТО!
+SECRET_KEY = Key.new(version=4, purpose="local", key=b"your-32-byte-secret-key-here!")  # СМЕНИ ЭТО!
 
 # ===== МОДЕЛИ =====
 class License(BaseModel):
@@ -460,4 +460,4 @@ async def admin_update_license(update: LicenseUpdate):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8080)
+    uvicorn.run(app, host="0.0.0.0", port=8000)
